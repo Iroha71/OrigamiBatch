@@ -43,9 +43,11 @@ def receive_event(window: 'sg.Window'):
     if event == sg.WIN_CLOSED:
       break
     if event == ON_RESIZE:
+      print('画像サイズを変換中')
       imgs: List[str] = get_target_imgs(values['inputFilePath'], 'tga')
       for img in imgs:
         resize_img(img, values['virtical'], values['width'])
+      print('画像サイズの変換が完了しました')
 
 
 
@@ -55,7 +57,8 @@ def make_window():
     [sg.Text('ファイル', size=(9, 1)), sg.Input(), sg.FolderBrowse('ファイルを選択', key='inputFilePath')],
     [sg.Text('画像サイズ')],
     [sg.Text('縦'), sg.InputText('', size=(5, 1), key='virtical'), sg.Text('横'), sg.InputText('', size=(5, 1), key='width')],
-    [sg.Button('画像サイズを変更', key=ON_RESIZE)]
+    [sg.Button('画像サイズを変更', key=ON_RESIZE)],
+    [sg.Output()]
   ]
   window = sg.Window('sampble', layout)
 
