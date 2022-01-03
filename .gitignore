@@ -2,3 +2,4 @@
 build
 origami.spec
 dist/origami.exe
+dist
